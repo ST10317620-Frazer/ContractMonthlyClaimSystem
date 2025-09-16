@@ -1,0 +1,18 @@
+<h2>Submit New Claim</h2>
+<form>
+    <div class="mb-3">
+        <label class="form-label">Hours Worked</label>
+        <input type="number" class="form-control" placeholder="Enter hours" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Date Range</label>
+        <input type="text" class="form-control" placeholder="e.g., Sep 1 - Sep 30, 2025" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="4"></textarea>
+    </div>
+    <button type="button" class="btn btn-primary">Submit</button>
+    <button type="button" class="btn btn-secondary">Save Draft</button>
+    <button type="button" class="btn btn-outline-secondary">Cancel</button>
+</form>
