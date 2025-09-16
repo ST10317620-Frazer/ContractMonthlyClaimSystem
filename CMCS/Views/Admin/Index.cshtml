@@ -1,0 +1,39 @@
+<h2>Admin Dashboard</h2>
+<div class="mb-3">
+    <label class="form-label">Filter by Status</label>
+    <select class="form-select">
+        <option>All</option>
+        <option>Pending</option>
+        <option>Verified</option>
+        <option>Approved</option>
+        <option>Rejected</option>
+    </select>
+</div>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Lecturer</th>
+            <th>Submission Date</th>
+            <th>Hours Worked</th>
+            <th>Total Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Temporary Mock data to be updated for part 2 -->
+        <tr>
+            <td>1</td>
+            <td>John Doe</td>
+            <td>2025-09-10</td>
+            <td>20</td>
+            <td>R2000</td>
+            <td><span class="badge bg-warning">Pending</span></td>
+            <td>
+                <button class="btn btn-info btn-sm" onclick="location.href='/Admin/ClaimDetails'">View</button>
+                <button class="btn btn-primary btn-sm">Verify</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
