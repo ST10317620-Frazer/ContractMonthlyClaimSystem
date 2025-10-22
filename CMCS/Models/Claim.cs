@@ -11,5 +11,7 @@ namespace CMCS.Models
         public int UserID { get; set; }
          public DateTime? DateProcessed { get; set; }
         public string DocumentPath { get; set; }
+        public decimal? HourlyRate { get; set; }
+        public string? Notes { get; set; }
     }
 }

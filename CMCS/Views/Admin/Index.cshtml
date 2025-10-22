@@ -1,35 +1,51 @@
-@model IEnumerable<CMCS.Models.Claim>
+@model List<CMCS.Models.Claim>
 @{
     ViewData["Title"] = "Admin Dashboard";
 }
 <div class="container mt-4">
-    <h2>Admin Dashboard</h2>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Claim ID</th>
-                <th>Claim Name</th>
-                <th>Submission Date</th>
-                <th>Hours Worked</th>
-                <th>Total Amount</th>
-                <th>Status</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var claim in Model)
-            {
+    <h2 class="text-center mb-4">Pending Claims</h2>
+    @if (Model.Any())
+    {
+        <table class="table table-striped">
+            <thead>
                 <tr>
-                    <td>@claim.ClaimID</td>
-                    <td>@claim.ClaimName</td>
-                    <td>@claim.SubmissionDate.ToString("yyyy-MM-dd")</td>
-                    <td>@claim.HoursWorked</td>
-                    <td>@claim.TotalAmount</td>
-                    <td><span class="badge bg-@(claim.Status == "Pending" ? "warning" : claim.Status == "Declined" ? "danger" : "success")">@claim.Status</span></td>
-                    <td><a asp-action="ClaimDetails" asp-controller="Admin" asp-route-id="@claim.ClaimID" class="btn btn-sm btn-primary">View</a></td>
+                    <th>Claim ID</th>
+                    <th>Claim Name</th>
+                    <th>Hours Worked</th>
+                    <th>Total Amount</th>
+                    <th>Submission Date</th>
+                    <th>Document</th>
+                    <th>Actions</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var claim in Model)
+                {
+                    <tr>
+                        <td>@claim.ClaimID</td>
+                        <td>@claim.ClaimName</td>
+                        <td>@claim.HoursWorked</td>
+                        <td>R@claim.TotalAmount</td>
+                        <td>@claim.SubmissionDate.ToString("yyyy-MM-dd")</td>
+                        <td><a href="@claim.DocumentPath" target="_blank" class="btn btn-secondary btn-sm">View</a></td>
+                        <td>
+                            <form asp-action="ApproveClaim" asp-controller="Admin" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@claim.ClaimID" />
+                                <button type="submit" class="btn btn-success btn-sm me-2">Approve</button>
+                            </form>
+                            <form asp-action="DeclineClaim" asp-controller="Admin" method="post" style="display:inline;">
+                                <input type="hidden" name="id" value="@claim.ClaimID" />
+                                <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="text-center">No pending claims.</p>
+    }
 </div>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
