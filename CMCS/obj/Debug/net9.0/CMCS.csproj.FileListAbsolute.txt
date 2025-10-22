@@ -148,7 +148,6 @@
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/scopedcss/bundle/CMCS.styles.css
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/scopedcss/projectbundle/CMCS.bundle.scp.css
-/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/compressed/qj3hybwz3y-b9sayid5wm.gz
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/compressed/kz48bk8eqq-61n19gt1b8.gz
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/compressed/7pqx3xfq6x-xtxxf3hu2r.gz
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/compressed/fzzk558iun-bqjiyaj88i.gz
@@ -222,3 +221,4 @@
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/CMCS.pdb
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/CMCS.genruntimeconfig.cache
 /Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/ref/CMCS.dll
+/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/obj/Debug/net9.0/compressed/qj3hybwz3y-b9sayid5wm.gz
