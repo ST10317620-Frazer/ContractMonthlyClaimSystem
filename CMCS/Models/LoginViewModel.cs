@@ -1,6 +1,6 @@
 namespace CMCS.Models
 {
-    public class LoginView
+    public class LoginViewModel
     {
         public required string Username { get; set; }
         public required string Password { get; set; }

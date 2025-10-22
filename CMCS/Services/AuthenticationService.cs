@@ -1,8 +1,8 @@
-using CMCS.Models;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CMCS.Models;
 
 namespace CMCS.Services
 {
@@ -11,8 +11,8 @@ namespace CMCS.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly List<User> _users = new List<User>
         {
-            new User { UserID = "01", Username = "BicMitchum", PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass123"), Role = "Lecturer" },
-            new User { UserID = "02", Username = "TannerWillson", PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin1234"), Role = "Admin" }
+            new User { UserID = 1, Username = "BicMitchum", PasswordHash = BCrypt.Net.BCrypt.HashPassword("Pass123"), Role = "Lecturer" },
+            new User { UserID = 2, Username = "TannerWillson", PasswordHash = BCrypt.Net.BCrypt.HashPassword("Admin1234"), Role = "Admin" }
         };
 
         public AuthenticationService(IHttpContextAccessor httpContextAccessor)
@@ -25,22 +25,21 @@ namespace CMCS.Services
             var user = _users.FirstOrDefault(u => u.Username == username && BCrypt.Net.BCrypt.Verify(password, u.PasswordHash));
             if (user != null)
             {
-                var 
-                httpContext = _httpContextAccessor.HttpContext;
-                httpContext.Session.SetString("UserID", user.UserID);
+                var httpContext = _httpContextAccessor.HttpContext;
+                httpContext.Session.SetInt32("UserID", user.UserID);
                 httpContext.Session.SetString("Role", user.Role);
             }
             return await Task.FromResult(user);
         }
 
-        public async Task<User> GetAuthenticateAsync()
+        public async Task<User> GetCurrentUserAsync()
         {
             var httpContext = _httpContextAccessor.HttpContext;
-            var userID = httpContext.Session.GetString("UserID");
-            if (string.IsNullOrEmpty(userID))
+            var userID = httpContext.Session.GetInt32("UserID");
+            if (userID == null)
                 return null;
-
-            return await Task.FromResult(_users.FirstOrDefault(u => u.UserID == userID));
+            var user = _users.FirstOrDefault(u => u.UserID == userID.Value);
+            return await Task.FromResult(user);
         }
     }
 }

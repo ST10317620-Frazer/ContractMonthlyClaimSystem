@@ -9,5 +9,7 @@ namespace CMCS.Models
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
         public int UserID { get; set; }
+         public DateTime? DateProcessed { get; set; }
+        public string DocumentPath { get; set; }
     }
 }
