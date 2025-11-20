@@ -1,4 +1,4 @@
-namespace ContractLecturerClaimSystem.Models.Enums
+namespace CMCS.Models.Enums
 {
     public enum ClaimStatus
     {

@@ -1,33 +1,17 @@
-using Microsoft.EntityFrameworkCore;
 using CMCS.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace CMCS.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Claim> Claims { get; set; }
-        public DbSet<User> Users { get; set; }
-
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+            : base(options)
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Claim>().ToTable("Claims");
-            modelBuilder.Entity<User>().ToTable("Users");
-
-            modelBuilder.Entity<Claim>()
-                .Property(c => c.TotalAmount)
-                .HasColumnType("NUMERIC");
-
-            modelBuilder.Entity<Claim>()
-                .Property(c => c.DateProcessed)
-                .HasColumnName("DateProcessed")
-                .HasColumnType("DATETIME");
-
-            modelBuilder.Entity<Claim>().ToTable("Claims", t => t.ExcludeFromMigrations());
-            modelBuilder.Entity<User>().ToTable("Users", t => t.ExcludeFromMigrations());
-        }
+        public DbSet<Claim> Claims { get; set; } = null!;
+        public DbSet<ClaimDocument> ClaimDocuments { get; set; } = null!;
     }
 }

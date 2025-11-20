@@ -1,6 +1,4 @@
-using CMCS.Models;
-
-namespace ContractLecturerClaimSystem.Models
+namespace CMCS.Models
 {
     public class ClaimDocument
     {
@@ -9,7 +7,8 @@ namespace ContractLecturerClaimSystem.Models
         public Claim Claim { get; set; } = null!;
 
         public string OriginalFileName { get; set; } = string.Empty;
-        public string StoredFileName { get; set; } = string.Empty; // guid + extension
+        public string StoredFileName { get; set; } = string.Empty;
+
         public string FilePath => $"/uploads/{StoredFileName}";
     }
 }

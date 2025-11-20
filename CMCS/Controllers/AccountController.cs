@@ -1,48 +1,55 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-  using Microsoft.AspNetCore.Http;
-  using CMCS.Services;
-  using CMCS.Models;
+using CMCS.Models;
 
-  namespace CMCS.Controllers
-  {
-      public class AccountController : Controller
-      {
-          private readonly IAuthenticationService _authService;
+namespace CMCS.Controllers
+{
+    [AllowAnonymous]
+    public class AccountController : Controller
+    {
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-          public AccountController(IAuthenticationService authService)
-          {
-              _authService = authService;
-          }
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+        }
 
-          [HttpGet]
-          public IActionResult Login()
-          {
-              if (HttpContext.Session.GetInt32("UserId") != null)
-                  return RedirectToAction("Index", "Home");
-              return View();
-          }
+        [HttpGet]
+        public IActionResult Login(string? returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
 
-          [HttpPost]
-          public async Task<IActionResult> Login(LoginViewModel model)
-          {
-              if (!ModelState.IsValid)
-                  return View(model);
+        [HttpPost]
+[ValidateAntiForgeryToken]
+public async Task<IActionResult> Login(string email, string password)
+{
+    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+    {
+        ModelState.AddModelError("", "Email and password are required.");
+        return View();
+    }
 
-              var user = await _authService.AuthenticateAsync(model.Username, model.Password);
-              if (user == null)
-              {
-                  ModelState.AddModelError("", "Invalid username or password");
-                  return View(model);
-              }
+    var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
 
-              return RedirectToAction("Index", user.Role == "Lecturer" ? "Lecturer" : "Admin");
-          }
+    if (result.Succeeded)
+    {
+        return RedirectToAction("Index", "Home"); // HomeController will redirect to correct page
+    }
 
-          [HttpPost]
-          public IActionResult Logout()
-          {
-              HttpContext.Session.Clear();
-              return RedirectToAction("Login");
-          }
-      }
-  }
+    ModelState.AddModelError("", "Invalid email or password.");
+    return View();
+}
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+    }
+}

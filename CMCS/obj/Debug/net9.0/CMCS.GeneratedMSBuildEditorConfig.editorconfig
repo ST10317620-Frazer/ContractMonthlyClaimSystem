@@ -32,12 +32,20 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Admin/ClaimDetails.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vQ2xhaW1EZXRhaWxzLmNzaHRtbA==
+[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Admin/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWRtaW4vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Claims/MyClaims.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhaW1zL015Q2xhaW1zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Claims/Submit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xhaW1zL1N1Ym1pdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Home/AccessDenied.cshtml]
@@ -52,20 +60,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Lecturer/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVjdHVyZXIvSW5kZXguY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Lecturer/SubmitClaim.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVjdHVyZXIvU3VibWl0Q2xhaW0uY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Lecturer/UploadDocument.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVjdHVyZXIvVXBsb2FkRG9jdW1lbnQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/parisfrazer/ContractMonthlyClaimSystem/CMCS/Views/Shared/_ValidationScriptsPartial.cshtml]

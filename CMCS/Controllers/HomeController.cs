@@ -1,35 +1,42 @@
-using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CMCS.Models;
 
-namespace CMCS.Controllers;
-
-public class HomeController : Controller
+namespace CMCS.Controllers
 {
-     public IActionResult Index()
+    public class HomeController : Controller
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+
+        public HomeController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
-            var role = HttpContext.Session.GetString("Role");
-            if (role == "Lecturer")
-                return RedirectToAction("Index", "Lecturer");
-            if (role == "Admin")
-                return RedirectToAction("Index", "Admin");
-            return RedirectToAction("Login", "Account");
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
-        public IActionResult Privacy()
+        [AllowAnonymous]
+        public IActionResult Index()
         {
-            return View();
+            // If not logged in → show welcome page
+            if (!User.Identity?.IsAuthenticated ?? true)
+                return View();
+
+            // Simple, fast role check — no async needed
+            if (User.IsInRole("Lecturer"))
+                return RedirectToAction("MyClaims", "Claims");
+
+            if (User.IsInRole("Coordinator") || 
+                User.IsInRole("AcademicManager") || 
+                User.IsInRole("HR") || 
+                User.IsInRole("Admin"))
+                return RedirectToAction("Index", "Admin");   // ← GOES TO YOUR ADMIN PAGE
+
+            return View(); // fallback
         }
 
-        public IActionResult AccessDenied()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = HttpContext.TraceIdentifier });
-        }
+        [AllowAnonymous] public IActionResult Privacy() => View();
+        [AllowAnonymous] public IActionResult AccessDenied() => View();
     }
-
+}

@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace ContractLecturerClaimSystem.Models
+namespace CMCS.Models
 {
-    public class ApplicationUser : IdentityUser
+   public class ApplicationUser : IdentityUser
     {
-        public string FullName { get; set; } = string.Empty;
-        public string? EmployeeNumber { get; set; }
+        public string FullName { get; set; } = "";
     }
 }

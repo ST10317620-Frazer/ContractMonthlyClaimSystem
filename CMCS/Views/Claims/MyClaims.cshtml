@@ -1,0 +1,55 @@
+@model IEnumerable<CMCS.Models.Claim>
+@{
+    ViewData["Title"] = "My Claims";
+}
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">MY CLAIMS</h2>
+        <a asp-action="Submit" class="btn btn-success btn-lg">Submit New Claim</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info text-center py-5">
+            <h4>No claims submitted yet</h4>
+            <p>Click the button above to submit your first claim.</p>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped align-middle">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Date Submitted</th>
+                        <th>Hours</th>
+                        <th>Rate</th>
+                        <th>Total Amount</th>
+                        <th>Status</th>
+                        <th>Documents</th>
+                        <th>Rejection Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in Model)
+                    {
+                        <tr class="@(c.Status == "Approved" ? "table-success" : c.Status == "Rejected" ? "table-danger" : "")">
+                            <td>@c.SubmittedDate.ToString("dd MMM yyyy HH:mm")</td>
+                            <td>@c.HoursWorked h</td>
+                            <td>R @c.HourlyRate</td>
+                            <td class="fw-bold text-success">R @(c.HoursWorked * c.HourlyRate)</td>
+                            <td>
+                                <span class="badge @(c.Status == "Approved" ? "bg-success" : c.Status == "Rejected" ? "bg-danger" : "bg-warning")">
+                                    @c.Status
+                                </span>
+                            </td>
+                            <td>@c.Documents.Count file(s)</td>
+                            <td class="text-danger">@(c.RejectionReason ?? "—")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

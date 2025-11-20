@@ -1,0 +1,33 @@
+<h2>Submit Claim</h2>
+<form method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label>Hours Worked</label>
+        <input type="number" name="HoursWorked" class="form-control" step="0.5" required />
+    </div>
+    <div class="mb-3">
+        <label>Hourly Rate</label>
+        <input type="number" name="HourlyRate" class="form-control" required />
+    </div>
+    <div class="alert alert-info">
+        Total: R<span id="total">0</span>
+    </div>
+    <div class="mb-3">
+        <label>Notes</label>
+        <textarea name="Notes" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Upload Documents</label>
+        <input type="file" name="files" multiple class="form-control" accept=".pdf,.docx,.xlsx" />
+    </div>
+    <button type="submit" class="btn btn-success btn-lg">Submit Claim</button>
+</form>
+
+<script>
+    document.querySelectorAll('input[type=number]').forEach(el => {
+        el.addEventListener('input', () => {
+            let h = parseFloat(document.querySelector('[name=HoursWorked]').value) || 0;
+            let r = parseFloat(document.querySelector('[name=HourlyRate]').value) || 0;
+            document.getElementById('total').textContent = (h * r).toFixed(2);
+        });
+    });
+</script>
