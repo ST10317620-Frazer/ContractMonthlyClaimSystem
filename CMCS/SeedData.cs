@@ -1,36 +1,39 @@
 using Microsoft.AspNetCore.Identity;
 using CMCS.Models;
 
-public class SeedData
+namespace CMCS
 {
-    public static async Task Initialize(IServiceProvider serviceProvider)
+    public static class SeedData
     {
-        var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-        var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-
-        string[] roles = { "Lecturer", "Coordinator", "AcademicManager", "HR" };
-        foreach (var role in roles)
+        public static async Task Initialize(IServiceProvider serviceProvider)
         {
-            if (!await roleManager.RoleExistsAsync(role))
-                await roleManager.CreateAsync(new IdentityRole(role));
-        }
+            var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var userManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
-        var users = new[]
-        {
+            string[] roles = { "Lecturer", "Coordinator", "AcademicManager", "HR" };
+            foreach (var role in roles)
+            {
+                if (!await roleManager.RoleExistsAsync(role))
+                    await roleManager.CreateAsync(new IdentityRole(role));
+            }
+
+            var users = new[]
+            {
             new { Email = "lecturer@test.com", FullName = "John Lecturer", Role = "Lecturer" },
             new { Email = "coordinator@test.com", FullName = "Sarah Coordinator", Role = "Coordinator" },
             new { Email = "manager@test.com", FullName = "Mike Manager", Role = "AcademicManager" },
             new { Email = "hr@test.com", FullName = "Lisa HR", Role = "HR" }
         };
 
-        foreach (var u in users)
-        {
-            var user = await userManager.FindByEmailAsync(u.Email);
-            if (user == null)
+            foreach (var u in users)
             {
-                user = new ApplicationUser { UserName = u.Email, Email = u.Email, FullName = u.FullName };
-                await userManager.CreateAsync(user, "Pass@123");
-                await userManager.AddToRoleAsync(user, u.Role);
+                var user = await userManager.FindByEmailAsync(u.Email);
+                if (user == null)
+                {
+                    user = new ApplicationUser { UserName = u.Email, Email = u.Email, FullName = u.FullName };
+                    await userManager.CreateAsync(user, "Pass@123");
+                    await userManager.AddToRoleAsync(user, u.Role);
+                }
             }
         }
     }
