@@ -38,7 +38,7 @@ public async Task<IActionResult> Login(string email, string password)
 
     if (result.Succeeded)
     {
-        return RedirectToAction("Index", "Home"); // HomeController will redirect to correct page
+        return RedirectToAction("Index", "Home"); //  HomeController will redirect users to correct page
     }
 
     ModelState.AddModelError("", "Invalid email or password.");

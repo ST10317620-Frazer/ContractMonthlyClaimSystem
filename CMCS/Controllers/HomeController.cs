@@ -19,11 +19,10 @@ namespace CMCS.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
-            // If not logged in → show welcome page
+            // If not logged in, shows welcome page
             if (!User.Identity?.IsAuthenticated ?? true)
                 return View();
 
-            // Simple, fast role check — no async needed
             if (User.IsInRole("Lecturer"))
                 return RedirectToAction("MyClaims", "Claims");
 
@@ -31,7 +30,7 @@ namespace CMCS.Controllers
                 User.IsInRole("AcademicManager") || 
                 User.IsInRole("HR") || 
                 User.IsInRole("Admin"))
-                return RedirectToAction("Index", "Admin");   // ← GOES TO YOUR ADMIN PAGE
+                return RedirectToAction("Index", "Admin");   // this goes to the dmin page
 
             return View(); // fallback
         }

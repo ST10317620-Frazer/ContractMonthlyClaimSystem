@@ -19,7 +19,7 @@ namespace CMCS.Controllers
             _userManager = userManager;
         }
 
-        // Admin Dashboard – shows all pending claims
+        // Admin Dashboard shows all pending claims off bat
         public async Task<IActionResult> Index()
         {
             var claims = await _context.Claims
